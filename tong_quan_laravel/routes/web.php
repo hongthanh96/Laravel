@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get("homepage",function(){
     return "Đây là trang chủ";
 });
@@ -89,6 +89,26 @@ Route::post('/dictionary',function(\Illuminate\Http\Request $request){
     ]);
 });
 
+//route timezone
+Route::get('/',function(){
+    return view('timezone');
+});
+Route::get('/{timezone?}',function($timezone = null){
+      if (!empty($timezone)) {
+
+        // Khởi tạo giá trị giờ theo múi giờ UTC
+        $time = new DateTime(date('Y-m-d H:i:s'), new DateTimeZone('UTC'));
+
+        // Thay đổi về múi giờ được chọn
+        $time->setTimezone(new DateTimeZone(str_replace('-', '/', $timezone)));
+
+        // Hiển thị giờ theo định dạng mong muốn
+        echo 'Múi giờ bạn chọn ' . $timezone . ' hiện tại đang là: ' . $time->format('d-m-Y H:i:s');
+    }
+    return view('show_timezone');
+});
+
+
 //group
 Route::group(['prefix'=>'MyGroup'],function(){
     Route::get('User1',function(){
@@ -105,4 +125,4 @@ Route::group(['prefix'=>'MyGroup'],function(){
 //goi Controller
 Route::get('CallController', 'MyController@Hello');
 Route::get('thamso/{name}','MyController@KhoaHoc');
-// Route::controller('/controller','HomeController',['Hello'=>'hello','KhoaHoc'=>'khoahoc']);
+Route::get('home','HomeController@index');
