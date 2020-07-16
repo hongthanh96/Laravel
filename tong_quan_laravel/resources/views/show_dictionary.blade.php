@@ -7,9 +7,7 @@
 </head>
 <body>
     <h2>search</h2>
-    <?php $flag = false; 
-    var_dump($dictionary);
-    var_dump($search);?>
+    <?php $flag = false;?>
    <?php foreach ($dictionary as $word => $description): ?>
        <?php if ($word == $search): ?>
         <?php echo "Từ : $search có nghĩa là $description" ?>
