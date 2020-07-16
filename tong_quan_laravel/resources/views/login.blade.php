@@ -11,11 +11,11 @@
     @csrf
     <div>
         <label for="">Tên đăng nhập: </label>
-        <input type="password" name="userName" placeholder="Nhập tên đăng nhập">
+        <input type="text" name="userName" placeholder="Nhập tên đăng nhập">
     </div>
     <div>
         <label for="">Mật khẩu</label>
-        <input type="text" name="password" placeholder="Nhập mật khẩu">
+        <input type="password" name="password" placeholder="Nhập mật khẩu">
     </div>
     <div><input type="submit" value="Login"></div>
     </form>
