@@ -1,91 +1,84 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-    th, td {
-      text-align: left;
-      padding: 8px;
-    }
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
 
-    tr:nth-child(even) {background-color: #f2f2f2;}
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
+
 <body>
-<h1>Danh sách khách hàng</h1>
-<button><a href="customer/create">Thêm khách hàng</button>
-<table border="1">
-  <thead>
-  <tr>
-      <th>STT</th>
-      <th>Họ và tên</th>
-      <th>Số điện thoại</th>
-      <th>Email</th>
-      <th>Thao tác</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-      <td>1</td>
-      <td>Nguyễn Văn A</td>
-      <td>01234567890</td>
-      <td>email.test@mail.com</td>
-      <td>
-<a href="customer/1/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-      </td>
-  </tr>
-  <tr>
-      <td>2</td>
-      <td>Nguyễn Văn B</td>
-      <td>01234567890</td>
-      <td>email.test@mail.com</td>
-      <td>
-          <a href="customer/2/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-      </td>
-  </tr>
-  <tr>
-      <td>3</td>
-      <td>Nguyễn Văn C</td>
-      <td>01234567890</td>
-      <td>email.test@mail.com</td>
-      <td>
-          <a href="customer/3/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-      </td>
-  </tr>
-  <tr>
-      <td>4</td>
-      <td>Nguyễn Văn D</td>
-      <td>01234567890</td>
-      <td>email.test@mail.com</td>
-      <td>
-          <a href="customer/4/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-      </td>
-  </tr>
-  <tr>
-      <td>5</td>
-      <td>Nguyễn Văn E</td>
-      <td>01234567890</td>
-      <td>email.test@mail.com</td>
-      <td>
-          <a href="customer/5/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-      </td>
-  </tr>
-  <tr>
-    <td>{{$number ?? '' }}</td>
-    <td>{{$name ?? ''}}</td>
-    <td>{{$phone ?? ''}}</td>
-    <td>{{$email ?? ''}}</td>
-    <td>
-        <a href="customer/{{$number ?? '' }}/show">Xem</a> | <a href="#">Sửa</a> | <a href="#">Xóa</a>
-    </td>
-</tr>
-  </tbody>
-</table>
-</body>
-</html>
+    <div>
+
+        <h1>Danh sách khách hàng</h1>
+
+        @if (!isset($customers)){
+        <div>
+            <h5>Không tồn tại dữ liệu!</h5>
+        </div>
+        }
+
+        @else
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên khách hàng</th>
+                    <th scope="col">Ngày sinh</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tỉnh thành</th>
+                    <th scope="col">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($customers as $key =>$customer)
+                <tr>
+                    <td>{{++$key}}</td>
+                    <td><a href="{{route('customer.show',$customer)}}">{{$customer->name}}</a></td>
+                    <td>{{$customer->dob}}</td>
+                    <td>{{$customer->email}}</td>
+                    <td>{{$customer->city->name}}</td>
+                    <td>
+                        <a class="btn btn-success" href="{{route('customer.edit',$customer)}}">Sửa</a>
+                        <a class="btn btn-danger" href="{{route('customer.destroy',$customer)}}"
+                            onclick="return confirm('Bạn muốn xóa?')">Xóa</a>
+                    </td>
+                </tr>
+
+                @empty{
+                <tr>
+                    <td colspan="5">Không có khách hàng nào! </td>
+                </tr>
+
+
+                @endforelse
+
+
+            </tbody>
+        </table>
+        <div><a class="btn btn-primary" href="{{route('customer.create')}}">Thêm khách hàng</div>
+    </div>
+    @endif
+    @if (session('status'))
+    {{!! session('status') !!}}
+    @endif
+    @endsection

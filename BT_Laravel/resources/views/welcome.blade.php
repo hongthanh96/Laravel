@@ -85,12 +85,13 @@
                 </div>
 
                 <div class="links">
-                    <a href="customer">Customer</a>
+                    <a href="{{ route('customer.index') }}">Customer</a>
+                    <a href="{{ route('cities.index') }}">List City</a>
                 <a href="{{ Route("checkEmail.index") }}">CheckEmail</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
+                    <a href="{{ route('service.index') }}">Service</a>
+                    <a href="{{ route("tasks.create") }}">Add new task</a>
+                    <a href="{{ route("tasks.index") }}">List task</a>
+                    <a href="{{ route('blog.index') }}">Blogs</a>
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>

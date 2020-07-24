@@ -1,62 +1,52 @@
 <?php
     namespace App\Http\Controllers;
-    use Illuminate\Http\Request;
+
+use App\City;
+use App\Customer;
+use Illuminate\Http\Request;
     class CustomerController extends Controller{
         public function index(){
-            return view('customer.index');
+            $customers = Customer::all();
+            return view('customer.index',compact('customers'));
         }
+
         public function create(){
-            $number = $_POST["number"];
-            $name = $_POST["name"];
-            $phone = $_POST["phone"];
-            $email = $_POST["email"];
-            return view('customer.index',[
-                'number'=> $number,
-                'name'=> $name,
-                'phone'=> $phone,
-                'email'=> $email,
+            $cities = City::all();
+            return view('customer.create',compact('cities'));
+        }
+
+        public function store(){
+            $data = request()->validate([
+                'name' => 'required|min:2',
+                'dob' => 'required',
+                'email' => 'required|email',
+                'city_id' =>'required',
             ]);
+            Customer::create($data);
+            $mess = "<script>alert('Đã thêm thành công!')</script>";
+            return redirect()->route('customer.index')->with('status',$mess);
         }
-        public function show($id){
-            switch ($id){
-                case '1':
-                    $number = $id;
-                    $name = 'Nguyễn Văn A';
-                    $phone = '01234567890';
-                    $email = 'email.test@mail.com';
-                break;
-                case 2:
-                    $number = $id;
-                    $name = 'Nguyễn Văn B';
-                    $phone = '01234567890';
-                    $email = 'email.test@mail.com';
-                break;
-
-                case '3':
-                    $number = $id;
-                    $name = 'Nguyễn Văn C';
-                    $phone = '01234567890';
-                    $email = 'email.test@mail.com';
-                break;
-                case '4':
-                    $number = $id;
-                    $name = 'Nguyễn Văn E';
-                    $phone = '01234567890';
-                    $email = 'email.test@mail.com';
-                break;
-                case '5':
-                    $number = $id;
-                    $name = 'Nguyễn Văn F';
-                    $phone = '01234567890';
-                    $email = 'email.test@mail.com';
-                break;
-                default:
-                    echo "Không tìm thấy khách hàng!";
-            }
-            return view('customer.show', compact('number','name','phone','email'));
+        public function edit(Customer $customer){
+            $cities = City::all();
+            return view('customer.edit',compact('customer','cities'));
         }
-        public function edit($id){
 
+        public function update(Customer $customer){
+            $data = request()->validate([
+                'name' => 'required|min:2',
+                'dob' => 'required',
+                'email' => 'required|email',
+                'city_id' =>'required',
+            ]);
+            $customer->update($data);
+            return redirect()->route('customer.index');
+        }
+        public function show(Customer $customer){
+            return view('customer.show',compact('customer'));
+        }
+        public function destroy(Customer $customer){
+            $customer->delete();
+            return redirect()->route('customer.index');
         }
     }
 ?>

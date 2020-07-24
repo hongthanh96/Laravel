@@ -1,0 +1,3 @@
+<div>
+    {!! $blog->description !!}
+</div>

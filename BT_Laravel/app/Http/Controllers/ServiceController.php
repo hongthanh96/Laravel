@@ -19,7 +19,6 @@ class ServiceController extends Controller
         ]);
         // Service::create($data);
         $service = new Service();
-
         $service->title = request('title');
         $service->save();
 
