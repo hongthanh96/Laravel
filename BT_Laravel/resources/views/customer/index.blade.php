@@ -27,24 +27,60 @@
 
 <body>
     <div>
-        <div>
-            <h1>Danh sách khách hàng</h1>
-            <a class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#cityModal">
-                Lọc
-            </a>
-            @if(isset($totalCustomerFilter))
-            <span class="text-muted">
-                {{'Tìm thấy' . ' ' . $totalCustomerFilter . ' '. 'khách hàng:'}}
-            </span>
-            @endif
+        <div class="row">
+            <div class="col-12">
+                <h1>Danh sách khách hàng</h1>
+                <a class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#cityModal">
+                    Lọc
+                </a>
+                @if(isset($totalCustomerFilter))
+                <span class="text-muted">
+                    {{'Tìm thấy' . ' ' . $totalCustomerFilter . ' '. 'khách hàng:'}}
+                </span>
+                @endif
 
-            @if(isset($cityFilter))
-            <div class="pl-5">
-                <span class="text-muted"><i class="fa fa-check" aria-hidden="true"></i>
-                    {{ 'Thuộc tỉnh' . ' ' . $cityFilter->name }}</span>
+                @if(isset($cityFilter))
+                <div class="pl-5">
+                    <span class="text-muted"><i class="fa fa-check" aria-hidden="true"></i>
+                        {{ 'Thuộc tỉnh' . ' ' . $cityFilter->name }}</span>
+                </div>
+                @endif
             </div>
-            @endif
+
+            <div class="col-6">
+
+                <form class="navbar-form navbar-left" action="{{ route('customer.search') }}">
+
+                    @csrf
+
+                    <div class="row">
+
+                        <div class="col-8">
+
+                            <div class="form-group">
+
+                                <input type="text" name = "keyword" class="form-control" placeholder="Search">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-4">
+
+                            <button type="submit" class="btn btn-default">Tìm kiếm</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
+
+
+
         @if (!isset($customers)){
         <div>
             <h5>Không tồn tại dữ liệu!</h5>
@@ -96,6 +132,7 @@
 
             </tbody>
         </table>
+        {{-- <div> {{ $customers->links() }} </div> --}}
         <div><a class="btn btn-primary" href="{{route('customer.create')}}">Thêm khách hàng</a></div>
 
 
@@ -143,10 +180,10 @@
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Hủy</button>
         </div>
     </div>
-    </div>
+    {{-- </div>
     </div>
 
-    </div>
+    </div> --}}
 
 
     @endif

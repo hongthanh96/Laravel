@@ -68,13 +68,27 @@ class CustomerController extends Controller
         Session::flash('success', 'Đã cập nhật khách hàng thành công!');
         return redirect()->route('customer.index');
     }
+
     public function show(Customer $customer)
     {
         return view('customer.show', compact('customer'));
     }
+
     public function destroy(Customer $customer)
     {
         $customer->delete();
         return redirect()->route('customer.index');
+    }
+
+    public function search(Request $request){
+        $keyword = $request->input('keyword');
+        if(!isset($keyword)){
+            return redirect()->route('customer.index');
+        }
+        else{
+            $customers = Customer::where('name','LIKE','%'.$keyword.'%');
+            $cities = City::all();
+            return view('customer.index',compact('customers','cities'));
+        }
     }
 }
