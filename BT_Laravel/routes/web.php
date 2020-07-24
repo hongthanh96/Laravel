@@ -26,6 +26,7 @@ Route::group(['prefix'=>'customer'],function(){
     Route::put('/{customer}','CustomerController@update')->name("customer.update");
     Route::get('/show/{customer}','CustomerController@show')->name("customer.show");
     Route::get('/delete/{customer}','CustomerController@destroy')->name("customer.destroy");
+    Route::get('/filter','CustomerController@filterByCity')->name("customer.filterByCity");
 });
 
 Route::get('/service','ServiceController@index')->name("service.index");
