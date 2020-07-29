@@ -20,7 +20,7 @@
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text text-dark">${{ $product->price }}</p>
                             <p class="card-text text-danger">Số lượt xem: {{ $product->view_count }}</p>
-
+                            <a href="{{ route('products.addcart', $product) }}" class="btn btn-primary">Thêm vào giỏ hàng</a>
                             <!-- Nút XEM chuyển hướng người dùng quay lại trang danh sách sản phẩm -->
                             <a href="{{ route('products.index') }}" class="btn btn-primary">< Quay lại </a>
                         </div>

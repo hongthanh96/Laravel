@@ -24,10 +24,27 @@
 
                 <!-- Nút XEM chuyển hướng người dùng sang trang chi tiết -->
                 <a href="{{ route('products.show', $product) }}" class="btn btn-primary">Xem</a>
+                {{-- <a href="{{ route('products.addcart',$product) }}" class = "btn btn-primary">Thêm vào giỏ hàng</a> --}}
+
+                <a onclick = "addCart({{ $product }})" href="javascript:" class = "btn btn-primary">Thêm vào giỏ hàng</a>
+
             </div>
         </div>
     </div>
     @endforeach
     @endif
 </div>
+<a href="{{ route('products.displaycart') }}" class="btn btn-primary">Xem giỏ hàng</a>
+
+
+<script>
+    function addCart(product){
+        $.ajax({
+            url:'http://127.0.0.1:8000/products/Ajaxaddcart/' + product['id'],
+            type: 'GET',
+        }).done(function(response){
+            alertify.success('Đã thêm vào giỏ hàng thành công!');
+        });
+    }
+</script>
 @endsection
