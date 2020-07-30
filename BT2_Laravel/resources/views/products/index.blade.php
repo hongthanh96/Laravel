@@ -26,7 +26,7 @@
                 <a href="{{ route('products.show', $product) }}" class="btn btn-primary">Xem</a>
                 {{-- <a href="{{ route('products.addcart',$product) }}" class = "btn btn-primary">Thêm vào giỏ hàng</a> --}}
 
-                <a onclick = "addCart({{ $product }})" href="javascript:" class = "btn btn-primary">Thêm vào giỏ hàng</a>
+                <a onclick = "addCart({{ $product->id }})" href="javascript:" class = "btn btn-primary">Thêm vào giỏ hàng</a>
 
             </div>
         </div>
@@ -34,17 +34,26 @@
     @endforeach
     @endif
 </div>
-<a href="{{ route('products.displaycart') }}" class="btn btn-primary">Xem giỏ hàng</a>
+<a href="{{ route('cart.displaycart') }}" class="btn btn-primary">Xem giỏ hàng</a>
 
 
 <script>
-    function addCart(product){
+    function addCart(id){
         $.ajax({
-            url:'http://127.0.0.1:8000/products/Ajaxaddcart/' + product['id'],
+            url: "{{ route('cart.Ajaxaddcart') }}",
             type: 'GET',
-        }).done(function(response){
-            alertify.success('Đã thêm vào giỏ hàng thành công!');
-        });
+            dataType: 'json',
+            data:{
+                id:id
+            },
+            success:function(mess){
+            alertify.success(mess);
+            },
+            error: function(){
+                alertify.warning('Thêm thất bại!');
+        }
+        })
+
     }
 </script>
 @endsection

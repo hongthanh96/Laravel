@@ -21,14 +21,12 @@ Route::get('/', function () {
 Route::group(['prefix' => 'products'], function () {
     Route::get('/','ProductController@index')->name('products.index');
     Route::get('/{product}','ProductController@show')->name('products.show');
-    Route::get('/Ajaxaddcart/{product}','ProductController@AjaxaddCart')->name('products.Ajaxaddcart');
-    Route::get('/Displaycart/cart','ProductController@DisplayCart')->name('products.displaycart');
-    Route::get('/delete/{product}','ProductController@delCart')->name('products.delcart');
-    Route::post('/update/{product}','ProductController@updateCart')->name('products.updatecart');
-    // Route::get('/cart', function () {
-    //     return view('products.cart');
-    // })->name('products.cart');
-
+});
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/Ajaxaddcart/product','CartController@AjaxaddCart')->name('cart.Ajaxaddcart');
+    Route::get('/Displaycart/cart','CartController@DisplayCart')->name('cart.displaycart');
+    Route::get('/delete/product','CartController@delCart')->name('cart.delcart');
+    Route::post('/update','CartController@updateCart')->name('cart.updatecart');
 });
 
 

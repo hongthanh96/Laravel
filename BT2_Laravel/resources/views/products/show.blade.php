@@ -20,7 +20,7 @@
                             <p class="card-text">{{ $product->description }}</p>
                             <p class="card-text text-dark">${{ $product->price }}</p>
                             <p class="card-text text-danger">Số lượt xem: {{ $product->view_count }}</p>
-                            <a href="{{ route('products.addcart', $product) }}" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                            <a onclick = "addCart({{ $product->id }})" href="javascript:" class = "btn btn-primary">Thêm vào giỏ hàng</a>
                             <!-- Nút XEM chuyển hướng người dùng quay lại trang danh sách sản phẩm -->
                             <a href="{{ route('products.index') }}" class="btn btn-primary">< Quay lại </a>
                         </div>
@@ -28,4 +28,24 @@
                 </div>
         @endif
     </div>
+
+    <script>
+        function addCart(id){
+            $.ajax({
+                url: "{{ route('cart.Ajaxaddcart') }}",
+                type: 'GET',
+                dataType: 'json',
+                data:{
+                    id:id
+                },
+                success:function(mess){
+                alertify.success(mess);
+                },
+                error: function(){
+                    alertify.warning('Thêm thất bại!');
+            }
+            })
+
+        }
+    </script>
 @endsection

@@ -9,7 +9,7 @@
 
     @else
 
-    <table class="table table-striped">
+    <table id = "loadTable" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -30,19 +30,15 @@
             <tr>
                 <td>{{ $cnt++ }}</td>
                 <td>{{ $item['name'] }}</td>
-                <form action="{{ route('products.updatecart',$item) }}" method="post">
-                    @csrf
-                    <td><input type="number" min='0' name="qty" value="{{ $item['qty'] }}"><input type="submit"
-                            value="update"></td>
-                </form>
+                    <td><input onchange = "updateFuntion({{ $item['id'] }})" type="number" min="1" name="qty" id = "qty-{{ $item['id'] }}" value="{{ $item['qty'] }}"></td>
                 <td>{{ $item['price'] }}</td>
-                <td>{{ $sum[] = $item['price'] *  $item['qty'] }}</td>
-                <td><a href="{{ route('products.delcart',$item) }}">Delete</td>
+                <td id="total-{{ $item['id'] }}" >{{ $sum[] = $item['price'] *  $item['qty'] }}</td>
+                <td><button style="border: transparent" onclick="deleteCart({{ $item['id'] }})"><i style="color: red"  class="far fa-trash-alt"></i></td>
             </tr>
             @endforeach
             <tr>
-                <td colspan="4">Tổng tiền: </td>
-                <td colspan="2">{{ array_sum($sum) }}</td>
+                <td  colspan="4">Tổng tiền: </td>
+                <td id = 'sum' colspan="2">{{ array_sum($sum) }}</td>
             </tr>
             @else
             <tr>
@@ -58,3 +54,49 @@
     @endif
 </div>
 @endsection
+
+<script>
+    function updateFuntion(id){
+        $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        type: 'POST',
+        url: "{{ route('cart.updatecart') }}",
+        dataType: 'json',
+        data: {
+            id: id,
+            qty: $('#qty-' + id).val(),
+            _token: '{{ csrf_token() }}'
+        },
+        success:function(data){
+            console.log(data);
+            $('#qty-' + id).text(data[0]);
+            $('#total-' +id).text(data[1]);
+            $('#sum').text(data[2]);
+            alertify.success('Đã update số lượng thành công!');
+        },
+        error: function(){
+             alertify.warning('Update không thành công!!');
+        }
+    });
+
+    }
+
+    function deleteCart(id){
+        $.ajax({
+            type:'GET',
+            url: "{{ route('cart.delcart') }}",
+            dataType: 'json',
+            data:{
+                id:id
+            },
+            success:function(mess){
+                alertify.success(mess);
+                $("#loadTable").load(" #loadTable");
+            }
+        });
+    }
+</script>
