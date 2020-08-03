@@ -14,11 +14,12 @@
 
             <!-- Nếu biến $product tồn tại thì hiển thị sản phẩm -->
                 <div class="col-12">
-                    <div class="card text-left" style="width: 100%;">
+                    <div class="card text-left" style="width: 20rem;">
                         <div class="card-body">
+                            <img class = "card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}" srcset="">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->description }}</p>
-                            <p class="card-text text-dark">${{ $product->price }}</p>
+                            <p class="card-text text-dark">{{ number_format($product->price) }}</p>
                             <p class="card-text text-danger">Số lượt xem: {{ $product->view_count }}</p>
                             <a onclick = "addCart({{ $product->id }})" href="javascript:" class = "btn btn-primary">Thêm vào giỏ hàng</a>
                             <!-- Nút XEM chuyển hướng người dùng quay lại trang danh sách sản phẩm -->

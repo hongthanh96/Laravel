@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,16 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('/Displaycart/cart','CartController@DisplayCart')->name('cart.displaycart');
     Route::get('/delete/product','CartController@delCart')->name('cart.delcart');
     Route::post('/update','CartController@updateCart')->name('cart.updatecart');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    Route::get('/product','ProductController@productAdmin')->name('admin.product');
+    Route::get('/addProduct','ProductController@create')->name('admin.addProduct');
+    Route::get('/delProduct/product','ProductController@destroy')->name('admin.delProduct');
+    Route::post('/editProduct/product','ProductController@edit')->name('admin.editProduct');
 });
 
 
