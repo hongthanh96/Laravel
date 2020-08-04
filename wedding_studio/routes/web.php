@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('admin.home');
     });
+    Route::get('/services', 'ServiceController@index')->name('service.index');
+    Route::get('/services/create', 'ServiceController@create')->name('service.create');
 });
 
 Route::group(['prefix' => 'home'], function () {
