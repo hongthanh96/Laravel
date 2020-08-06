@@ -11,11 +11,9 @@ class AlbumReponsitory{
 
         public function add($requests){
             $album = new Album;
-            $album->id = $requests['id'];
             $album->name = $requests['name'];
             $album->save();
             return $album;
-
         }
     }
 ?>

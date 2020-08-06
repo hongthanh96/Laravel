@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use App\Repositories\AlbumReponsitory;
 use Illuminate\Http\Request;
 
@@ -14,15 +15,19 @@ class AlbumController extends Controller
     }
     public function index()
     {
+        return view("admin.albums");
+    }
+    public function getAlbums()
+    {
         $albums = $this->albumReponsitory->all();
-        return view("admin.albums",compact('albums'));
+        return response()->json($albums);
     }
 
     public function create(Request $request)
     {
         $requests = $request->all();
-        $album = $this->albumReponsitory->add($requests);
-        return response()->json($album);
+        $result = $this->albumReponsitory->add($requests);
+        return response()->json($result , 200);
     }
 
     /**
@@ -55,7 +60,7 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

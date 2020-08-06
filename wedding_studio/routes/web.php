@@ -22,20 +22,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('admin.home');
     });
+    Route::get('/Albums', 'AlbumController@index')->name('album.index');
+
+
     Route::get('/services', 'ServiceController@index')->name('service.index');
     Route::get('/services/create', 'ServiceController@create')->name('service.create');
     Route::post('/services/edit', 'ServiceController@edit')->name('service.edit');
     Route::post('/services/update', 'ServiceController@update')->name('service.update');
     Route::get('/services/destroy', 'ServiceController@destroy')->name('service.destroy');
-
-    Route::get('/albums', 'AlbumController@index')->name('album.index');
-    Route::post('/albums/create', 'AlbumController@create')->name('albumsssss.create');
-    // Route::post('/albums/edit', 'AlbumController@edit')->name('album.edit');
-    // Route::post('/albums/update', 'AlbumController@update')->name('album.update');
-    // Route::get('/albums/destroy', 'AlbumController@destroy')->name('album.destroy');
-
-
-
 
     Route::get('/albumDetail', 'AlbumdetailController@index')->name('albumDetail.index');
     Route::get('/api/album', 'AlbumdetailController@indexalbums');
@@ -47,6 +41,16 @@ Route::group(['prefix' => 'admin'], function () {
     // Route::post('/albumDetail/update', 'ServiceController@update')->name('albumDetail.update');
     // Route::get('/albumDetail/destroy', 'ServiceController@destroy')->name('albumDetail.destroy');
 });
+
+Route::group(['prefix' => 'albums'], function () {
+    Route::get('/apiAlbum','AlbumController@getAlbums')->name('album.apiAlbum');
+    Route::post('/create', 'AlbumController@create')->name('album.create');
+    Route::put('/edit/{id}', 'AlbumController@edit')->name('album.edit');
+    // Route::post('/albums/update', 'AlbumController@update')->name('album.update');
+    // Route::get('/albums/destroy', 'AlbumController@destroy')->name('album.destroy');
+
+});
+
 
 Route::group(['prefix' => 'home'], function () {
 
