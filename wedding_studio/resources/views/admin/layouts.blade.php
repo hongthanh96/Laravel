@@ -14,31 +14,12 @@
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Tempusdominus Bbootstrap 4 -->
-    {{-- <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> --}}
-    <!-- iCheck -->
-    {{-- <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css"> --}}
-    <!-- JQVMap -->
-    {{-- <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css"> --}}
-    <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    <!-- overlayScrollbars -->
-    {{-- <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> --}}
-    <!-- Daterange picker -->
-    {{-- <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css"> --}}
-    <!-- summernote -->
-    {{-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css"> --}}
-    <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-    {{-- <!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/> --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -206,15 +187,21 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
+                                    <a href="{{ route('service.index') }}" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Quản lí khách hàng</p>
+                                        <p>Quản lí loại dịch vụ</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
+                                    <a href="{{ route('albumDetail.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
+                                        <p>Quản lí album ảnh</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('album.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lí loại album</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -276,45 +263,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
-    <!-- jQuery -->
-    {{-- <script src="plugins/jquery/jquery.min.js"></script> --}}
-    <!-- jQuery UI 1.11.4 -->
-    {{-- <script src="plugins/jquery-ui/jquery-ui.min.js"></script> --}}
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    {{-- <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script> --}}
-    <!-- Bootstrap 4 -->
-    {{-- <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --}}
-    <!-- ChartJS -->
-    {{-- <script src="plugins/chart.js/Chart.min.js"></script> --}}
-    <!-- Sparkline -->
-    {{-- <script src="plugins/sparklines/sparkline.js"></script> --}}
-    <!-- JQVMap -->
-    {{-- <script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-    <!-- jQuery Knob Chart -->
-    <script src="plugins/jquery-knob/jquery.knob.min.js"></script> --}}
-    <!-- daterangepicker -->
-    {{-- <script src="plugins/moment/moment.min.js"></script> --}}
-    {{-- <script src="plugins/daterangepicker/daterangepicker.js"></script> --}}
-    <!-- Tempusdominus Bootstrap 4 -->
-    {{-- <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script> --}}
-    <!-- Summernote -->
-    {{-- <script src="plugins/summernote/summernote-bs4.min.js"></script> --}}
-    <!-- overlayScrollbars -->
-    {{-- <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App --> --}}
+    @stack('scripts')
     <script src="{{ asset("js/adminlte.js") }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="js/dashboard.js"></script> --}}
-    <!-- AdminLTE for demo purposes -->
-    {{-- <script src="js/demo.js"></script> --}}
-
-
 
     <!-- JavaScript alertify-->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+    {{-- <script src="{{ asset('js/adminAlbums.js') }}"></script> --}}
 </body>
 
 </html>

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Repositories\ServiceReponsitory;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\New_;
 
 class ServiceController extends Controller
 {
@@ -16,8 +15,8 @@ class ServiceController extends Controller
     }
     public function index()
     {
-        $services = $this->serviceReponsitory->all();
-        return view('admin.services',compact('services'));
+        // $services = $this->serviceReponsitory->all();
+        return view('admin.services');
     }
 
     public function create(Request $request)
@@ -25,63 +24,37 @@ class ServiceController extends Controller
         $service = New Service;
         $service->id = $request->id;
         $service->name = $request->name;
-        $service->save();
+        $this->serviceReponsitory->create($service);
         return response()->json($service);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $service = $this->serviceReponsitory->findById($id);
+        return response()->json($service);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $service = $this->serviceReponsitory->findById($id);
+        $service->name = $request->nameService;
+        $service->save();
+        return response()->json($service);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function destroy(Request $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $id = $request->id;
+        $service = $this->serviceReponsitory->delete($id);
+        $service->delete();
+        return response()->json('đã xóa thành công!');
     }
 }

@@ -15,14 +15,11 @@ class CreateAlbumdetailsTable extends Migration
     {
         Schema::create('albumdetails', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->string('description');
             $table->integer('isHot')->default('0');
-            $table->string('image1');
-            $table->string('image2');
-            $table->string('image3')->nullable();
-            $table->string('image4')->nullable();
-            $table->string('image5')->nullable();
-            $table->string('image6')->nullable();
+            $table->string('image');
+            $table->string('filename');
             $table->string('album_id');
             $table->softDeletes();
             $table->timestamps();
