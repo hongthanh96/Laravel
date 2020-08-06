@@ -265,10 +265,12 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
     @stack('scripts')
-    <script src="{{ asset("js/adminlte.js") }}"></script>
+    <script src='{{ asset("js/adminlte.js") }}'></script>
+    {{-- <script src='{{ asset("js/adminDetailAlbum.js") }}'></script> --}}
 
     <!-- JavaScript alertify-->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 
     <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 

@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin'], function () {
         return view('admin.home');
     });
     Route::get('/Albums', 'AlbumController@index')->name('album.index');
+    Route::get('/albumDetail', 'AlbumdetailController@index')->name('albumDetail.index');
 
 
     Route::get('/services', 'ServiceController@index')->name('service.index');
@@ -31,24 +32,27 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/services/update', 'ServiceController@update')->name('service.update');
     Route::get('/services/destroy', 'ServiceController@destroy')->name('service.destroy');
 
-    Route::get('/albumDetail', 'AlbumdetailController@index')->name('albumDetail.index');
-    Route::get('/api/album', 'AlbumdetailController@indexalbums');
 
-    Route::post('/albumDetail/store', 'AlbumdetailController@store')->name('albumDetail.store');
 
-    // Route::get('/albumDetail/create', 'ServiceController@create')->name('albumDetail.create');
-    // Route::post('/albumDetail/edit', 'ServiceController@edit')->name('albumDetail.edit');
-    // Route::post('/albumDetail/update', 'ServiceController@update')->name('albumDetail.update');
-    // Route::get('/albumDetail/destroy', 'ServiceController@destroy')->name('albumDetail.destroy');
 });
 
 Route::group(['prefix' => 'albums'], function () {
     Route::get('/apiAlbum','AlbumController@getAlbums')->name('album.apiAlbum');
     Route::post('/create', 'AlbumController@create')->name('album.create');
-    Route::put('/edit/{id}', 'AlbumController@edit')->name('album.edit');
-    // Route::post('/albums/update', 'AlbumController@update')->name('album.update');
-    // Route::get('/albums/destroy', 'AlbumController@destroy')->name('album.destroy');
+    Route::get('/edit/{id}', 'AlbumController@edit')->name('album.edit');
+    Route::put('/update/{id}', 'AlbumController@update')->name('album.update');
+    Route::delete('/destroy/{id}', 'AlbumController@destroy')->name('album.destroy');
+});
 
+Route::group(['prefix' => 'albumDetail'], function () {
+    Route::get('/apiDetailAlbum','AlbumdetailController@getDetailAlbum');
+
+    // Route::post('/albumDetail/store', 'AlbumdetailController@store')->name('albumDetail.store');
+
+    Route::post('/create', 'ServiceController@create')->name('albumDetail.create');
+    // Route::post('/albumDetail/edit', 'ServiceController@edit')->name('albumDetail.edit');
+    // Route::post('/albumDetail/update', 'ServiceController@update')->name('albumDetail.update');
+    // Route::get('/albumDetail/destroy', 'ServiceController@destroy')->name('albumDetail.destroy');
 });
 
 

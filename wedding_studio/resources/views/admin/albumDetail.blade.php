@@ -1,45 +1,27 @@
 @extends('admin.layouts')
 @section('content')
 <div>
-    <a href="javascript:;" class="btn btn-primary" data-toggle="modal" data-target="#addAlbum">Thêm album</a>
-    <table class="table table-striped">
+    <a href="javascript:;" class="btn btn-primary" onclick="albumDetail.openModal()">Thêm album</a>
+    <table class="table table-striped" id="tbAlbum">
         <thead>
             <tr>
                 <th>Mã album</th>
                 <th>Tên album</th>
                 <th>Mô tả</th>
                 <th>Nổi bật</th>
-                <th>Ảnh</th>
+                <th>Ảnh đại diện</th>
                 <th>Bộ album</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody id="table-data">
 
-
         </tbody>
-        {{-- <tbody>
-            @if ($albumDetail != null)
-            <tr>
-                <td colspan="7">Không tồn tại album nào!</td>
-            </tr>
-            @else
-            @forelse ($albumDetail as $album)
-                <tr>
-                    <td>123</td>
-                </tr>
-            @empty
-            <tr>
-                <td colspan="7">Không tồn tại album nào!</td>
-            </tr>
-
-            @endforelse
-            @endif
-
-        </tbody> --}}
     </table>
 
-    <!-- Modal -->
-    <div class="modal fade" id="addAlbum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal add edit-->
+    <div class="modal fade" id="addEditAlbumDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -48,9 +30,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('albumDetail.store') }}" method="POST"  enctype="multipart/form-data">
-                    @csrf
+                {{-- < action="{{ route('albumDetail.store') }}" method="POST"  enctype="multipart/form-data">
+                    @csrf --}}
+
                 <div class="modal-body">
+                    <form id="frAlbumDetail" >
+                        <input type="hidden" id="idAlbumDetail" name="idAlbumDetail" value="0">
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Tên album</label>
                             <div class="col-sm-9">
@@ -66,7 +51,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Album nổi bật</label>
                             <div class="col-sm-9">
-                                <select name="isHot" id="">
+                                <select name="isHot" id="isHot">
                                     <option value="1">Hot</option>
                                     <option value="0">No Hot</option>
                                 </select>
@@ -99,8 +84,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
-                    <button class="btn btn-primary">Save changes</button>
+                    <a href="javascript:;" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                    <a href="javascript:;" class="btn btn-primary" onclick="albumDetail.save()">Save changes</a>
                 </div>
             </form>
             </div>
@@ -110,6 +95,11 @@
 @endsection
 
 
+@push('scripts')
+    <script src='{{ asset("js/adminDetailAlbum.js") }}'></script>
+@endpush
+
+{{--
 @push('scripts')
 <script>
 
@@ -148,4 +138,4 @@
         getAlbumDetail();
     });
 </script>
-@endpush
+@endpush --}}

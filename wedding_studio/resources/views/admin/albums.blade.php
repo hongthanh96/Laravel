@@ -12,28 +12,13 @@
                 <th>Action</th>
             </thead>
                 <tbody>
-                    {{-- @forelse ($albums as $album)
-                    <tr>
-                        <td>{{ $album->id }}</td>
-                        <td>{{ $album->name }}</td>
-                        <td>
-                            <a href="javascript:;" onclick=""><i style="color: blue" class="fas fa-pen"></i></a>
-                            <a href="javascript:;"><i style="color: red" class="fas fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
 
-                    @empty
-                    <tr>
-                        <td colspan="3">Không có dữ liệu data</td>
-                    </tr>
-
-                    @endforelse --}}
                 </tbody>
         </table>
     </div>
 
 
- <!-- Modal add delete-->
+ <!-- Modal add edit-->
  <div class="modal fade" id="addEditAlbum" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
  aria-labelledby="staticBackdropLabel" aria-hidden="true">
  <div class="modal-dialog">
@@ -47,12 +32,6 @@
          <div class="modal-body">
              <form id="fromAddEditAlbum">
                  <input type="hidden" id="idAlbum" name="idAlbum" value="0">
-                 {{-- <div class="form-group row">
-                    <label for="" class="col-sm-3 col-form-label">Tên mã loại album</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" id="id" placeholder="Nhập mã loại album">
-                    </div>
-                </div> --}}
                  <div class="form-group row">
                      <label for="" class="col-sm-3 col-form-label">Tên loại album</label>
                      <div class="col-sm-9">

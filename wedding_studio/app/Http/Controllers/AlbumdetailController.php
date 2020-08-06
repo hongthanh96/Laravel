@@ -16,39 +16,19 @@ class AlbumdetailController extends Controller
 
     public function index()
     {
-        $albums = $this->albumDetailReponsitory->all();
-
-        $albumss = Album::all();
+        $albumss = $this->albumDetailReponsitory->allAlbum();
         return view('admin.albumDetail',compact('albumss'));
     }
 
 
-    public function indexalbums()
+    public function getDetailAlbum()
     {
-        $albums = $this->albumDetailReponsitory->all();
-
-       return response()->json($albums, 200);
+        $albumDetails = $this->albumDetailReponsitory->all();
+       return response()->json($albumDetails, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
         $atribute = $request->all();
         if ($request->hasFile('image')) {
             $fileName = time().'.'.$request->image->getClientOriginalExtension();
@@ -69,9 +49,14 @@ class AlbumdetailController extends Controller
         }
         $atribute['filename'] = json_encode($data);
         $result = Albumdetail::create($atribute);
-        // return redirect()->route("albumDetail.index");
 
         return response()->json($result, 200);
+    }
+
+    public function store(Request $request)
+    {
+
+
     }
 
     /**
