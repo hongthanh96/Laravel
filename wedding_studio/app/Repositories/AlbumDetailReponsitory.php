@@ -1,10 +1,10 @@
 <?php
     namespace App\Repositories;
-
 use App\Models\Album;
 use App\Models\Albumdetail;
+use App\Repositories\AlbumDetailReponsitoryInterface;
 
-class AlbumDetailReponsitory{
+class AlbumDetailReponsitory implements AlbumDetailReponsitoryInterface{
         public function all(){
             $albumDetails = Albumdetail::all();
             return $albumDetails;

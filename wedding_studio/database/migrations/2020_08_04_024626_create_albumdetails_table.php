@@ -13,17 +13,20 @@ class CreateAlbumdetailsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('albumdetails', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('name');
             $table->string('description');
             $table->integer('isHot')->default('0');
             $table->string('image');
             $table->string('filename');
-            $table->string('album_id');
+            $table->bigInteger('album_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('album_id')->references('id')->on('albums');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -33,6 +36,8 @@ class CreateAlbumdetailsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('albumdetails');
+        Schema::enableForeignKeyConstraints();
     }
 }

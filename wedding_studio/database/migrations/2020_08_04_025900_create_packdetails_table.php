@@ -13,18 +13,21 @@ class CreatePackdetailsTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('packdetails', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('price');
             $table->string('service1');
             $table->string('service2');
             $table->string('service3')->nullable();
             $table->string('service4')->nullable();
             $table->string('service5')->nullable();
-            $table->string('packlist_id');
+            $table->bigInteger('packlist_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('packlist_id')->references('id')->on('packlists');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -34,6 +37,7 @@ class CreatePackdetailsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('packdetails');
     }
 }
