@@ -1,7 +1,7 @@
 
-## Đề tài: Hệ thống quản lí wedding-studio
-# Tutor: Lê Quốc Khánh
-# Học viên: Châu Thị Hồng Thanh
+# Đề tài: Hệ thống quản lí wedding-studio
+### Tutor: Lê Quốc Khánh
+### Học viên: Châu Thị Hồng Thanh
 
 Tài liệu tham khảo: 
 
