@@ -9,8 +9,8 @@
                 <th>Tên album</th>
                 <th>Mô tả</th>
                 <th>Nổi bật</th>
-                <th>Ảnh đại diện</th>
                 <th>Bộ album</th>
+                <th>Ảnh album</th>
                 <th>Action</th>
 
             </tr>
@@ -66,14 +66,14 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Album ảnh</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" id="fileName"  name="filename[]" multiple>
+                                <input type="file" class="form-control" id="filename"  name="filename[]" multiple>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Loại Album</label>
                             <div class="col-sm-9">
-                                <select name="album_id" id="">
+                                <select name="album_id" id="album_id">
                                     @forelse ($albumss as $album)
                                         <option value="{{ $album->id }}">{{ $album->name }}</option>
                                     @empty
@@ -91,6 +91,7 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection
 

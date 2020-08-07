@@ -24,12 +24,23 @@ class AlbumdetailController extends Controller
     public function getDetailAlbum()
     {
         $albumDetails = $this->albumDetailReponsitory->all();
+        foreach($albumDetails as $albumDetail){
+            $albumDetail['filename'] = json_decode($albumDetail['filename']);
+        }
        return response()->json($albumDetails, 200);
+    }
+
+    public function getDetailAlbumImage($id)
+    {
+        $albumDetails = Albumdetail::find($id);
+        $albumDetail['filename'] = json_decode($albumDetails['filename']);
+       return response()->json($albumDetail, 200);
     }
 
     public function create(Request $request)
     {
         $atribute = $request->all();
+        // dd($atribute);
         if ($request->hasFile('image')) {
             $fileName = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move(public_path('upload'), $fileName);
@@ -40,16 +51,19 @@ class AlbumdetailController extends Controller
 
         if ($request->hasFile('filename')) {
             $data = [];
-
             foreach ($request->filename as $photo) {
-                $fileName = time().'.'.$photo->getClientOriginalExtension();
+                $fileName = time().rand().'.'.$photo->getClientOriginalExtension();
                 $photo->move(public_path('upload'), $fileName);
                 array_push($data , $fileName);
             }
         }
         $atribute['filename'] = json_encode($data);
-        $result = Albumdetail::create($atribute);
 
+        // $atribute['filename'] = "none.jpg";
+        // dd($atribute);
+        // $result = $this->albumDetailReponsitory->add($atribute);
+
+        $result = Albumdetail::create($atribute);
         return response()->json($result, 200);
     }
 

@@ -46,13 +46,14 @@ Route::group(['prefix' => 'albums'], function () {
 
 Route::group(['prefix' => 'albumDetail'], function () {
     Route::get('/apiDetailAlbum','AlbumdetailController@getDetailAlbum');
+    Route::get('/apiDetailAlbum/{id}','AlbumdetailController@getDetailAlbumImage');
 
     // Route::post('/albumDetail/store', 'AlbumdetailController@store')->name('albumDetail.store');
 
-    Route::post('/create', 'ServiceController@create')->name('albumDetail.create');
-    // Route::post('/albumDetail/edit', 'ServiceController@edit')->name('albumDetail.edit');
-    // Route::post('/albumDetail/update', 'ServiceController@update')->name('albumDetail.update');
-    // Route::get('/albumDetail/destroy', 'ServiceController@destroy')->name('albumDetail.destroy');
+    Route::post('/create', 'AlbumdetailController@create')->name('albumDetail.create');
+    // Route::post('/albumDetail/edit', 'AlbumdetailController@edit')->name('albumDetail.edit');
+    // Route::post('/albumDetail/update', 'AlbumdetailController@update')->name('albumDetail.update');
+    // Route::get('/albumDetail/destroy', 'AlbumdetailController@destroy')->name('albumDetail.destroy');
 });
 
 

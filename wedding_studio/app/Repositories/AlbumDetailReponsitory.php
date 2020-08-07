@@ -15,8 +15,9 @@ class AlbumDetailReponsitory{
             return $albums;
         }
 
-        public function add(){
-
+        public function add($requests){
+            $albumDetails = Albumdetail::create($requests);
+            return $albumDetails;
         }
     }
 ?>
