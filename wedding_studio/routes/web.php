@@ -13,10 +13,15 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', function () {
+        return view('users.home');
+    });
+    // Route::get('/home', function () {
+    //     return view('users');
+    // });
+});
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
@@ -24,15 +29,17 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::get('/Albums', 'AlbumController@index')->name('album.index');
     Route::get('/albumDetail', 'AlbumdetailController@index')->name('albumDetail.index');
-
-
     Route::get('/services', 'ServiceController@index')->name('service.index');
-    Route::get('/services/create', 'ServiceController@create')->name('service.create');
-    Route::post('/services/edit', 'ServiceController@edit')->name('service.edit');
-    Route::post('/services/update', 'ServiceController@update')->name('service.update');
-    Route::get('/services/destroy', 'ServiceController@destroy')->name('service.destroy');
+    Route::get('/packList', 'PacklistController@index')->name('packList.index');
+    Route::get('/packDetail', 'PackdetailController@index')->name('packDetail.index');
+});
 
-
+Route::group(['prefix' => 'services'], function () {
+    Route::get('/getApi', 'ServiceController@getApi')->name('service.getApi');
+    Route::post('/create', 'ServiceController@create')->name('service.create');
+    Route::get('/edit/{id}', 'ServiceController@edit')->name('service.edit');
+    Route::put('/update/{id}', 'ServiceController@update')->name('service.update');
+    Route::delete('destroy/{id}', 'ServiceController@destroy')->name('service.destroy');
 
 });
 
@@ -51,9 +58,25 @@ Route::group(['prefix' => 'albumDetail'], function () {
     // Route::post('/albumDetail/store', 'AlbumdetailController@store')->name('albumDetail.store');
 
     Route::post('/create', 'AlbumdetailController@create')->name('albumDetail.create');
-    // Route::post('/albumDetail/edit', 'AlbumdetailController@edit')->name('albumDetail.edit');
-    // Route::post('/albumDetail/update', 'AlbumdetailController@update')->name('albumDetail.update');
-    // Route::get('/albumDetail/destroy', 'AlbumdetailController@destroy')->name('albumDetail.destroy');
+    Route::get('/edit/{id}', 'AlbumdetailController@edit')->name('albumDetail.edit');
+    Route::put('/update/{id}', 'AlbumdetailController@update')->name('albumDetail.update');
+    Route::delete('/destroy/{id}', 'AlbumdetailController@destroy')->name('albumDetail.destroy');
+});
+
+Route::group(['prefix' => 'packLists'], function () {
+    Route::get('/apiPactlist','PacklistController@getPactlists');
+    Route::post('/create', 'PacklistController@create');
+    Route::get('/edit/{id}', 'PacklistController@edit');
+    Route::put('/update/{id}', 'PacklistController@update');
+    Route::delete('/destroy/{id}', 'PacklistController@destroy');
+});
+
+Route::group(['prefix' => 'packDetails'], function () {
+    Route::get('/apiPacklDetail','PackdetailController@getPackDetail');
+    Route::post('/create', 'PackdetailController@create');
+    Route::get('/edit/{id}', 'PackdetailController@edit');
+    Route::put('/update/{id}', 'PackdetailController@update');
+    Route::delete('/destroy/{id}', 'PackdetailController@destroy');
 });
 
 
@@ -66,4 +89,4 @@ Route::group(['prefix' => 'home'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');

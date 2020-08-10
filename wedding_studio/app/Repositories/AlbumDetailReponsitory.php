@@ -19,5 +19,21 @@ class AlbumDetailReponsitory implements AlbumDetailReponsitoryInterface{
             $albumDetails = Albumdetail::create($requests);
             return $albumDetails;
         }
+
+        public function findOrFail($idImage){
+            $albumDetail = Albumdetail::where('id',$idImage)->firstOrFail();
+            return $albumDetail;
+        }
+        public function updateDetailAlbum($requests,$idDetail){
+            $albumDetail = Albumdetail::where('id', $idDetail)->firstOrFail();
+            $albumDetail->update($requests);
+            return $albumDetail;
+        }
+
+        public function delete($idDetail){
+            $albumDetail = Albumdetail::findOrFail($idDetail);
+            $albumDetail->delete();
+            return $albumDetail;
+        }
     }
 ?>

@@ -10,7 +10,7 @@ class Packdetail extends Model
 {
     protected $guarded = [];
     use SoftDeletes;
-    public function packlists(){
-        return $this->belongsTo(Packlist::class,'packlist_id','id');
-    }
+    // public function packlists(){
+    //     return $this->belongsTo(Packlist::class,'packlist_id','id');
+    // }
 }

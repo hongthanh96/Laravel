@@ -2,8 +2,10 @@
     namespace App\Repositories;
 
 use App\Models\Album;
+use App\Repositories\AlbumRepositoryInterface;
 
-class AlbumReponsitory{
+class AlbumReponsitory implements AlbumRepositoryInterface{
+
         public function all(){
             $albums = Album::all();
             return $albums;

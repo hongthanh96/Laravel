@@ -8,7 +8,7 @@
         <table class="table table-striped" id="tbAlbum">
             <thead>
                 <th>id</th>
-                <th>Name</th>
+                <th>Loại album</th>
                 <th>Action</th>
             </thead>
                 <tbody>
@@ -35,14 +35,14 @@
                  <div class="form-group row">
                      <label for="" class="col-sm-3 col-form-label">Tên loại album</label>
                      <div class="col-sm-9">
-                         <input type="text" class="form-control" id="nameAlbum" name="nameAlbum" placeholder="Nhập tên loại album">
+                         <input type="text" class="form-control" id="nameAlbum" name="nameAlbum" placeholder="Nhập tên loại album" data-rule-required="true"
+                         data-msg-required="Loại album không được để trống!">
                      </div>
                  </div>
                  <div class="form-group row">
                      <div class="col-sm-9">
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                         <a href="javascript:;" class="btn btn-primary" onclick="album.save()">Save
-                             changes</a>
+                         <a href="javascript:;" class="btn btn-primary" id = "buttonAD" onclick="album.save()">+ Add</a>
                      </div>
                  </div>
              </form>

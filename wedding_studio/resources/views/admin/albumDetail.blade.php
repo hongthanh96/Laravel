@@ -39,13 +39,15 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Tên album</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên album">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tên album" data-rule-required="true"
+                                data-msg-required="Tên album không được để trống!">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Mô tả album</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="description" name="description" placeholder="Nhập mô tả album">
+                                <input type="text" class="form-control" id="description" name="description" placeholder="Nhập mô tả album" data-rule-required="true"
+                                data-msg-required="Mô tả album không được để trống!">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -60,13 +62,15 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Hình ảnh</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" id="image" name="image">
+                                <input type="file" class="form-control" id="image" name="image" data-rule-required="true"
+                                data-msg-required="Ảnh không được để trống!">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Album ảnh</label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" id="filename"  name="filename[]" multiple>
+                                <input type="file" class="form-control" id="filename"  data-rule-required="true"
+                                data-msg-required="file ảnh không được để trống!" name="filename[]" multiple >
                             </div>
                         </div>
 
@@ -85,7 +89,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="javascript:;" class="btn btn-secondary" data-dismiss="modal">Close</a>
-                    <a href="javascript:;" class="btn btn-primary" onclick="albumDetail.save()">Save changes</a>
+                    <a href="javascript:;" class="btn btn-primary" onclick="albumDetail.save()"  id="buttonAD">+ Add</a>
                 </div>
             </form>
             </div>

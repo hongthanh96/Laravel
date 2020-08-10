@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     private $serviceReponsitory;
+
     public function __construct(ServiceReponsitory $serviceReponsitory)
     {
         $this->serviceReponsitory = $serviceReponsitory;
@@ -19,42 +20,35 @@ class ServiceController extends Controller
         return view('admin.services');
     }
 
+    public function getApi(){
+        $services =  $this->serviceReponsitory->all();
+        return response()->json($services,200);
+    }
+
     public function create(Request $request)
     {
-        $service = New Service;
-        $service->id = $request->id;
-        $service->name = $request->name;
-        $this->serviceReponsitory->create($service);
-        return response()->json($service);
+        $requests = $request->all();;
+        $service = $this->serviceReponsitory->create($requests);
+        return response()->json($service,200);
     }
 
-    public function store(Request $request)
+    public function edit($id)
     {
-        //
-    }
-
-    public function edit(Request $request)
-    {
-        $id = $request->id;
         $service = $this->serviceReponsitory->findById($id);
-        return response()->json($service);
+        return response()->json($service,200);
 
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $id = $request->id;
-        $service = $this->serviceReponsitory->findById($id);
-        $service->name = $request->nameService;
-        $service->save();
-        return response()->json($service);
+        $requests = $request->all();
+        $service = $this->serviceReponsitory->updateService($requests,$id);
+        return response()->json($requests,200);
     }
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $id = $request->id;
         $service = $this->serviceReponsitory->delete($id);
-        $service->delete();
-        return response()->json('đã xóa thành công!');
+        return response()->json($service);
     }
 }

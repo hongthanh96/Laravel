@@ -30,18 +30,6 @@ class AlbumController extends Controller
         return response()->json($result , 200);
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
         $album = $this->albumReponsitory->findById($id);

@@ -18,19 +18,9 @@ album.showAlbums = function(){
                     t.row.add( [
                         v.id,
                         v.name,
-                       ` <a href="javascript:;" onclick="album.get(${v.id})"><i style="color: blue" class="fas fa-pen"></i></a>
-                       <a href="javascript:;" onclick = "album.delete(${v.id})"><i style="color: red" class="fas fa-trash-alt"></i></a>`
+                       ` <a href="javascript:;" onclick="album.get(${v.id})" title="Edit"><i style="color: blue" class="fas fa-pen"></i></a>
+                       <a href="javascript:;" onclick = "album.delete(${v.id})" title="Delete"><i style="color: red" class="fas fa-trash-alt"></i></a>`
                     ] ).draw( false );
-        //         $('#tbAlbum tbody').append(
-        //             ` <tr>
-        //     <td>${v.id}</td>
-        //     <td>${v.name}</td>
-        //     <td>
-                // <a href="javascript:;" onclick="album.get(${v.id})"><i style="color: blue" class="fas fa-pen"></i></a>
-                // <a href="javascript:;" onclick = "album.delete(${v.id})"><i style="color: red" class="fas fa-trash-alt"></i></a>
-        //     </td>
-        // </tr>`
-        //         )
             });
         }
 
@@ -61,7 +51,7 @@ album.save = function(){
             });
         }
 
-    //edit
+    //update
     else{
         var objAlbum = {};
         objAlbum.id = $('#idAlbum').val();
@@ -98,6 +88,7 @@ album.get = function(id){
             $('#idAlbum').val(data.id);
             $('#nameAlbum').val(data.name);
             $('#addEditAlbum').find(".modal-title").text('Edit Album');
+            $('#addEditAlbum').find("#buttonAD").text('Save change');
             $('#addEditAlbum').modal('show');
         }
 
@@ -133,7 +124,6 @@ album.delete = function(id){
                     }
                 });
             }
-
         }
     });
 }
