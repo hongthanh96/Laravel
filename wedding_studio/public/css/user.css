@@ -86,16 +86,6 @@
 }
 
 
-.bg-h1{
-    color: rosybrown;
-}
-.bg-h3{
-    color: gray;
-}
-.service-h2{
-    text-align: center;
-}
-
 @media  (max-width: 999px){
     .footer{
         flex-direction: column;

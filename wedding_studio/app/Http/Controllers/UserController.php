@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+// use App\Repositories\UserRepository;
+use App\Repositories\UserRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Repositories\HomepageRepository;
 
-class HomepageController extends Controller
+class UserController extends Controller
 {
-    private $homepageRepository;
-    public function __construct(HomepageRepository $homepageRepository)
+    private $userRepository;
+    public function __construct(UserRepositoryInterface $userRepository)
     {
-        $this->homepageRepository =$homepageRepository;
+        $this->userRepository = $userRepository;
     }
+    public function getUser(){
+        $users = $this->userRepository->all();
+        return response()->json($users);
+    }
+
     public function index()
     {
-        $services = $this->homepageRepository->serviceAll();
-        $packDetails = $this->homepageRepository->packDetailAll();
-        $albumHots = $this->homepageRepository->albumHot();
-        return view('users.home',compact('services','packDetails','albumHots'));
+        return view('admin.customer');
     }
 
     /**

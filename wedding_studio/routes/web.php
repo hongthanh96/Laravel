@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Route::group(['prefix' => '/'], function () {
-    Route::get('/', function () {
-        return view('users.home');
-    });
+    Route::get('/', 'HomepageController@index')->name('homepage');
     // Route::get('/home', function () {
     //     return view('users');
     // });
@@ -32,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/services', 'ServiceController@index')->name('service.index');
     Route::get('/packList', 'PacklistController@index')->name('packList.index');
     Route::get('/packDetail', 'PackdetailController@index')->name('packDetail.index');
+    Route::get('/user', 'UserController@index')->name('user.index');
 });
 
 Route::group(['prefix' => 'services'], function () {
@@ -79,10 +78,12 @@ Route::group(['prefix' => 'packDetails'], function () {
     Route::delete('/destroy/{id}', 'PackdetailController@destroy');
 });
 
-
-Route::group(['prefix' => 'home'], function () {
-
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/apiUser','UserController@getUser');
 });
+
+
+
 
 
 

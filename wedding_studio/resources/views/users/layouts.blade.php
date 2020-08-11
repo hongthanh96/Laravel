@@ -17,33 +17,45 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Trang chủ</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Album</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dịch vụ</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Bảng giá</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Giới thiệu</a>
-              </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Liên hệ</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse row" id="collapsibleNavbar">
+            <div class="col-9">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trang chủ</a>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Album</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dịch vụ</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="#">Quay phóng sự cưới</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Thuê trang phục cưới</a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#">Trang điểm cô dâu</a>
+                        </div>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Bảng giá</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Giới thiệu</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="col-3 row">
+                    <div class="col-6">
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary">Đăng nhập</a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{{ route('register') }}" class="btn btn-outline-secondary">Đăng kí</a>
+                    </div>
+            </div>
+
         </div>
       </nav>
 
@@ -53,17 +65,18 @@
         <div class="footer-left">
             <div class="footer-left1">
                 <h3>GIỚI THIỆU</h3>
-                    <p>Với hơn 100 nhân viên tư vấn trên mọi phương diện, không chỉ là hướng dẫn và xử lý các vấn đề từ Haravan, chúng tôi luôn mong cùng chia sẻ các kinh nghiệm giúp bạn bán được nhiều hàng hơn.</p>
+                <p>Wedding Studio luôn được khẳng định là một thương hiệu về dịch vụ ảnh cưới và chụp ảnh cưới trọn gói chuyên nghiệp cùng với đội ngũ thợ chụp ảnh và chuyên gia trang điểm và nhân viên trẻ, năng động, sáng tạo, tận tình, chu đáo.</p>
                     <p><i class="fas fa-home"></i>28 Nguyễn Tri Phương,Tp. Huế</p>
-                    <p><i class="far fa-envelope"></i>hi@haravan.com</p>
-                    <p><i class="fas fa-phone-alt"></i>0702420337</p>
+                    <p><i class="far fa-envelope"></i>hi@weddingstudio.com</p>
+                    <p><i class="fas fa-phone-alt"></i>0702420339</p>
             </div>
             <div class="footer-left2">
                 <h3>LIÊN KẾT</h3>
                 <ul>
                     <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Album</a></li>
+                    <li><a href="#">Dịch vụ</a></li>
+                    <li><a href="#">Bảng giá</a></li>
                     <li><a href="#">Giới thiệu</a></li>
                     <li><a href="#">Liên hệ</a></li>
                 </ul>

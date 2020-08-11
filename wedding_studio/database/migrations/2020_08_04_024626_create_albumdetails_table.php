@@ -16,7 +16,7 @@ class CreateAlbumdetailsTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('albumdetails', function (Blueprint $table) {
             $table->id('id');
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->integer('isHot')->default('0');
             $table->string('image');

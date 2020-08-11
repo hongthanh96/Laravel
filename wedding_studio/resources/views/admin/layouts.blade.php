@@ -188,7 +188,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('service.index') }}" class="nav-link active">
+                                    <a href="{{ route('user.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lí khách hàng</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('service.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Quản lí loại dịch vụ</p>
                                     </a>
