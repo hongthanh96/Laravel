@@ -80,6 +80,10 @@ Route::group(['prefix' => 'packDetails'], function () {
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('/apiUser','UserController@getUser');
+    Route::get('/show/{id}','UserController@showUser');
+    Route::put('/changeAdmin/{id}','UserController@changeAdmin');
+    Route::put('/changeRole/{id}','UserController@changeRole');
+    Route::put('/changeBlock/{id}','UserController@changeBlock');
 });
 
 
