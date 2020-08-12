@@ -6,7 +6,10 @@ use App\Repositories\AlbumDetailReponsitoryInterface;
 
 class AlbumDetailReponsitory implements AlbumDetailReponsitoryInterface{
         public function all(){
-            $albumDetails = Albumdetail::all();
+            // $albumDetails = Albumdetail::all();
+            $albumDetails = Albumdetail::select('albums.name','albumdetails.*')
+                            ->join('albums','albums.id','=','albumdetails.album_id')
+                            ->get();
             return $albumDetails;
         }
 

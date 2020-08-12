@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\HomepageRepository;
+use App\Repositories\HomepageRepositoryInterface;
 
 class HomepageController extends Controller
 {
     private $homepageRepository;
-    public function __construct(HomepageRepository $homepageRepository)
+    public function __construct(HomepageRepositoryInterface $homepageRepository)
     {
         $this->homepageRepository =$homepageRepository;
     }
@@ -20,11 +20,12 @@ class HomepageController extends Controller
         return view('users.home',compact('services','packDetails','albumHots'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function showAlbum($id){
+       $album = $this->homepageRepository->imgDetail($id);
+       return view('users.showAlbum',compact('album'));
+    }
+
     public function create()
     {
         //

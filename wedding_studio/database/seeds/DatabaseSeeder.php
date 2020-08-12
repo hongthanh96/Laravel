@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Packdetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,5 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(UserinformationSeeder::class);
+        $this->call(PackdetailSeeder::class);
+        $this->call(ServiceSeeder::class);
     }
 }

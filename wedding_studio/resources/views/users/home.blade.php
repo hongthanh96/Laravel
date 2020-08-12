@@ -75,8 +75,9 @@
                     <div class="card" style="width: 18rem; height: 22rem;">
                         <img src="upload/{{ $albumHot->image }}" class="card-img-top rounded mx-auto d-block" alt="..." style="height:250px;">
                         <div class="card-body">
-                            <h5 class="text-center">{{ $albumHot->name }}</h5>
+                            <h5 class="text-center">{{ $albumHot->title }}</h5>
                         </div>
+                        <a href='{{ route("home.showAlbum", $albumHot->id) }}' class="text-center btn btn-primary">Xem chi tiết</a>
                       </div>
                 </div>
               @endforeach

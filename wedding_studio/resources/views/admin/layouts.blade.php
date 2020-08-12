@@ -211,17 +211,17 @@
                                         <p>Quản lí loại album</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a href="{{route('packList.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Quản lí các loại gói</p>
                                     </a>
-                                </li>
+                                </li> --}}
 
                                 <li class="nav-item">
                                     <a href="{{ route('packDetail.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Quản lí gói dịch vụ</p>
+                                        <p>Quản lí các gói</p>
                                     </a>
                                 </li>
                             </ul>

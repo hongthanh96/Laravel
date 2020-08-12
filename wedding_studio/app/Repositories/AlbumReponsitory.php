@@ -7,10 +7,7 @@ use App\Repositories\AlbumRepositoryInterface;
 class AlbumReponsitory implements AlbumRepositoryInterface{
 
         public function all(){
-            $albums = Album::select('albums.*','albumdetails.*')
-                    ->join('albumdetails','albums.id','=','albumdetails.album_id')
-                    ->get();
-            // $albums = Album::all();
+            $albums = Album::all();
             return $albums;
         }
 

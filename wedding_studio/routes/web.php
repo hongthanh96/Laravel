@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 Route::group(['prefix' => '/'], function () {
     Route::get('/', 'HomepageController@index')->name('homepage');
+    Route::get('/showAlbum/{id}','HomepageController@showAlbum')->name('home.showAlbum');
     // Route::get('/home', function () {
     //     return view('users');
     // });

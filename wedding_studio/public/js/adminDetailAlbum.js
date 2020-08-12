@@ -15,10 +15,10 @@ albumDetail.showDetail = function(){
                     `
                     <tr>
                         <td>${value.id}</td>
-                        <td>${value.name}</td>
+                        <td>${value.title}</td>
                         <td>${value.description}</td>
                         <td>${isHot}</td>
-                        <td>${value.album_id}</td>
+                        <td>${value.name}</td>
                         <td><img src='/upload/${value.image}' class='img-thumbnail' style="width: 70px; height: 70px;"/></td>
                         <td>
                         <a href="javascript:;" onclick="albumDetail.get(${value.id})" title="Edit"><i style="color: blue" class="fas fa-pen"></i></a>
@@ -42,7 +42,7 @@ albumDetail.save = function(){
         if($('#idAlbumDetail').val() == 0){
 
             var formData = new FormData();
-            formData.append('name', $('#name').val());
+            formData.append('title', $('#name').val());
             formData.append('description', $('#description').val());
             formData.append('isHot', $('#isHot').val());
             formData.append('image', $('#image')[0].files[0]);
@@ -76,7 +76,7 @@ albumDetail.save = function(){
             var formData = new FormData();
             var uri = url +  "/albumDetail/update/" + $('#idAlbumDetail').val();
             formData.append('id', $('#idAlbumDetail').val());
-            formData.append('name', $('#name').val());
+            formData.append('title', $('#name').val());
             formData.append('description', $('#description').val());
             formData.append('isHot', $('#isHot').val());
             formData.append('image', $('#image')[0].files[0]);
@@ -128,7 +128,7 @@ albumDetail.get = function(id){
         dataType: 'json',
         success:function(data){
             $('#idAlbumDetail').val(data.id);
-            $('#name').val(data.name);
+            $('#name').val(data.title);
             $('#description').val(data.description);
             $('#isHot').val(data.isHot);
             $('#image').attr("src",data.image);
