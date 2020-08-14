@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServiceRequest;
 use App\Models\Service;
 use App\Repositories\ServiceReponsitory;
 use Illuminate\Http\Request;
@@ -25,11 +26,11 @@ class ServiceController extends Controller
         return response()->json($services,200);
     }
 
-    public function create(Request $request)
+    public function create(ServiceRequest $request)
     {
-        $requests = $request->all();;
+        $requests = $request->all();
         $service = $this->serviceReponsitory->create($requests);
-        return response()->json($service,200);
+        return response()->json($service);
     }
 
     public function edit($id)
@@ -39,7 +40,7 @@ class ServiceController extends Controller
 
     }
 
-    public function update(Request $request,$id)
+    public function update(ServiceRequest $request,$id)
     {
         $requests = $request->all();
         $service = $this->serviceReponsitory->updateService($requests,$id);

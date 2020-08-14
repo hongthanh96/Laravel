@@ -51,7 +51,12 @@
                         $('#addEditService').modal('hide');
                         alertify.success('Thêm album thành công!');
                     },
-                    error:function(){
+                    error:function(xhr){
+
+                        var errors = xhr.responseJSON.errors;
+                        $.each(errors,function(key,value){
+                            $('#tbError').append(`<tr><td class="text-danger">${value}</td></tr>`)
+                        });
                         alertify.error('Thêm album không thành công!');
                     }
                 });
@@ -73,7 +78,11 @@
                         $('#addEditService').modal('hide');
                         alertify.success('Update dịch vụ thành công!');
                     },
-                    error:function(){
+                    error:function(xhr){
+                        var errors = xhr.responseJSON.errors;
+                        $.each(errors,function(key,error){
+                            $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                        });
                         alertify.error('Update dịch vụ không thành công!');
                     }
                 });
@@ -144,6 +153,7 @@
         $('#idService').val('0');
         $('#nameService').val("");
         $('#descriptionService').val("");
+        $('#tbError').html('');
 
     }
 

@@ -25,7 +25,7 @@ Route::group(['prefix' => '/'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', function () {
         return view('admin.home');
-    });
+    })->name('admin.home');
     Route::get('/Albums', 'AlbumController@index')->name('album.index');
     Route::get('/albumDetail', 'AlbumdetailController@index')->name('albumDetail.index');
     Route::get('/services', 'ServiceController@index')->name('service.index');
@@ -85,6 +85,9 @@ Route::group(['prefix' => 'user'], function () {
     Route::put('/changeAdmin/{id}','UserController@changeAdmin');
     Route::put('/changeRole/{id}','UserController@changeRole');
     Route::put('/changeBlock/{id}','UserController@changeBlock');
+
+    Route::get('/edit/{id}','UserController@edit');
+    Route::post('/update','UserController@update');
 });
 
 
@@ -95,4 +98,4 @@ Route::group(['prefix' => 'user'], function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');

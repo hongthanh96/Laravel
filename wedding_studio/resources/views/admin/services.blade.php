@@ -16,8 +16,7 @@
         </tbody>
     </table>
 
-
-    <!-- Modal add -->
+    <!-- Modal addedit -->
     <div class="modal fade" id="addEditService" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -27,6 +26,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+                <div class="erro_message">
+                    <table id="tbError">
+
+                    </table>
+
                 </div>
                 <div class="modal-body">
                     <form id="formService">
@@ -42,7 +47,7 @@
                             <label for="" class="col-sm-3 col-form-label">Mô tả dịch vụ</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="descriptionService" name="descriptionService" placeholder="Nhập mô tả dịch vụ" data-rule-required="true"
-                                data-msg-required="Tên dịch vụ không được để trống!">
+                                data-msg-required="mô tả dịch vụ không được để trống!">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -58,43 +63,7 @@
     </div>
 
     <!-- Modal edit -->
-    <div class="modal fade" id="editService" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Chỉnh sửa dịch vụ</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Mã dịch vụ</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="idService">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Tên dịch vụ</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="nameService">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-9">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary"
-                                    onclick="editService()">Save
-                                    changes</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 @endsection
 

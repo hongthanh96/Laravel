@@ -20,7 +20,7 @@ class CreateUserinformationsTable extends Migration
             $table->date('DOB')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->integer('block')->default('0');
             $table->integer('role')->default('0');
             $table->softDeletes();

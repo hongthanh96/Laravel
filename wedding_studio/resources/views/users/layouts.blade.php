@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css">
     <link rel="stylesheet" href="{{ asset('css/user.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light"  style="background-color: #e3f2fd;">
@@ -18,7 +20,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse row" id="collapsibleNavbar">
-            <div class="col-9">
+            <div class="col-8">
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Trang chủ</a>
@@ -42,21 +44,116 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Giới thiệu</a>
                       </li>
-                    <li class="nav-item">
+                      <li class="nav-item">
                         <a class="nav-link" href="#">Liên hệ</a>
                     </li>
+
+                    @if (Auth::check() && Auth::user()->isAdmin == 1)
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('admin.home') }}">Trang quản trị</a>
+                  </li>
+                    @endif
+
                   </ul>
             </div>
-            <div class="col-3 row">
+            <div class="col-4 row">
+                    @if (Auth::check())
+                        @if (Auth::user()->isAdmin == 1)
+                            <div class="col-7">
+                                <a href="{{ route('login') }}" class="btn btn-outline-primary">Admin {{ Auth::user()->name }}</a>
+                            </div>
+                            <div class="col-5">
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <input type="submit" value="Đăng xuất" class="btn btn-outline-secondary">
+                                </form>
+
+                            </div>
+                        @else
+                        <div class="dropdown">
+                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hello {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item text-success" href="javascripts:;" onclick="ObjUser.getUser({{ Auth::user()->id }})">Xem, chỉnh sửa thông tin tài khoản</a>
+                              {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
+                            </div>
+                          </div>
+                        <div class="col-5">
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <input type="submit" value="Đăng xuất" class="btn btn-outline-secondary">
+                            </form>
+
+                        </div>
+
+
+
+                        @endif
+
+                    @else
                     <div class="col-6">
                         <a href="{{ route('login') }}" class="btn btn-outline-primary">Đăng nhập</a>
                     </div>
                     <div class="col-6">
                         <a href="{{ route('register') }}" class="btn btn-outline-secondary">Đăng kí</a>
                     </div>
+                    @endif
+
+
             </div>
 
         </div>
+
+        <!-- Modal -->
+<div class="modal fade " id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thông tin khách hàng</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="formUser">
+              <div class="row">
+                    <div class="col-4">
+                        <img src="{{ asset('image/noneAvt.png') }}" id="avatar" name="avatar" style="width: 200px; height: 210px;" alt="">
+                        <input type="file" accept="image/*" onchange="ObjUser.uploadAvatar(this)">
+                    </div>
+                    <div class="col-8">
+                        <input type="hidden" id="idUser" name="idUser">
+                        <input type="hidden" id="id" name="id">
+                        <div class="form-group">
+                            <label for="" class="">Full name: </label>
+                            <input class="form-control" type="text" name="name" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Day Of Birth: </label>
+                            <input class="form-control" type="date" name="DOB" id="DOB">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Telephone</label>
+                            <input class="form-control" type="text" name="phone" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Address</label>
+                            <input class="form-control" type="text" name="address" id="address">
+                        </div>
+                    </div>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="ObjUser.save()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
       </nav>
 
             @yield('content')
@@ -103,6 +200,8 @@
     </div>
 
     <script src="https://kit.fontawesome.com/607b7b9d04.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+    <script src="{{ asset('js/infoUser.js') }}"></script>
 
 </body>
 </html>

@@ -51,4 +51,26 @@ class UserRepository implements UserRepositoryInterface{
                 return $user;
             }
         }
+
+        public function editUser($idUser){
+            $users = User::select('users.name','users.email','users.password','userinformations.*')
+                    ->join('userinformations','users.id','=','userinformations.user_id')
+                    ->where('userinformations.user_id',$idUser)
+                    ->get();
+            return $users;
+        }
+
+        public function updateUser($requests){
+            // dd($requests);
+            $user = User::findOrFail($requests['id'])->update(['name' => $requests['name']]);
+            // dd();
+            Userinformation::find($requests['idUser'])->update([
+                'DOB' => $requests['DOB'],
+                'phone' => $requests['phone'],
+                'address' => $requests['address'],
+                'image' => $requests['avatar']
+            ]);
+
+            return $user;
+        }
     }
