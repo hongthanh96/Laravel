@@ -27,7 +27,12 @@
     </div>
 </div>
 
+@if (Session::has('success'))
+<div class="success">
+    <p class="text-danger">{{ Session::get('success') }}</p>
+</div>
 
+@endif
 {{-- nav --}}
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item">
@@ -46,7 +51,7 @@
         <table class="table mt-4">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">STT</th>
                     <th scope="col">Name</th>
                     <th scope="col">Title</th>
                     <th scope="col">Description</th>
@@ -57,9 +62,12 @@
                 </tr>
             </thead>
             <tbody>
+                @php
+                    $cnt = 0;
+                @endphp
                 @foreach ($books as $key => $item)
                 <tr>
-                    <th scope="row">{{$key}}</th>
+                    <th scope="row">{{++$cnt}}</th>
                     <td>{{$item->name}}</td>
                     <td>{{$item->title}}</td>
                     <td>{{$item->description}}</td>

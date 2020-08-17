@@ -6,6 +6,7 @@ use App\Book;
 use App\Category;
 use App\Http\Requests\BookRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BookController extends Controller
 {
@@ -23,6 +24,7 @@ class BookController extends Controller
     {
         $requests = $request->all();
          Book::create($requests);
+         $request->session()->flash('success', 'Create thành công!');
          return redirect('/books');
 
     }
@@ -53,6 +55,7 @@ class BookController extends Controller
         $book->active = $request->active;
         $book->category_id = $request->category_id;
         $book->save();
+        $request->session()->flash('success', 'Update thành công!');
         return redirect('/books');
     }
 
@@ -76,6 +79,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $book->delete();
+        Session::flash('success','Xóa thành công!');
         return redirect('/books');
     }
 }
