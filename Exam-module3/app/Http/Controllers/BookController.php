@@ -59,12 +59,6 @@ class BookController extends Controller
         return redirect('/books');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function search(Request $request){
         $id = $request->category_id;
