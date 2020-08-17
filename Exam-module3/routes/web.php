@@ -25,4 +25,6 @@ Route::group(['prefix' => 'books'], function () {
     Route::post('/create', 'BookController@create')->name('books.create');
     Route::get('/edit/{id}', 'BookController@edit')->name('books.edit');
     Route::put('/update', 'BookController@update')->name('books.update');
+    Route::get('/search', 'BookController@search')->name('books.search');
+    Route::get('/destroy/{id}','BookController@destroy')->name('books.destroy');
 });

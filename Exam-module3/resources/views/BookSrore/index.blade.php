@@ -9,7 +9,17 @@
     }
 </style>
 <div class="container-fluid row">
-    <h2 class="col-10"> Quản lí sách</h2>
+    <h2 class="col-7"> Quản lí sách</h2>
+    <div class="col-3 ">
+        <form action="{{ route('books.search') }}" method="get" class="row">
+        <select name="category_id" class="col-7">
+            @foreach ($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+            @endforeach
+        </select>
+        <input type="submit" class="btn btn-success col-5" value="Lọc theo loại">
+        </form>
+    </div>
     <div class="col-2 text-center">
         <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
             Create
@@ -56,7 +66,8 @@
                     <td>{{$item->active}}</td>
                     <td>{{$item->category->title}}</td>
                     <td>{{$item->created_at}}</td>
-                <td><a href="{{route('books.edit',$item->id)}}" class="btn btn-primary"> Edit </a> <button class="btn btn-danger"> Delete </button></td>
+                <td><a href="{{route('books.edit',$item->id)}}" class="btn btn-primary"> Edit </a>
+                    <a href="{{ route('books.destroy',$item->id) }}" class="btn btn-danger"> Delete </a></td>
                 </tr>
                 @endforeach
             </tbody>

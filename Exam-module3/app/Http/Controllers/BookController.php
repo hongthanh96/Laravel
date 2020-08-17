@@ -62,8 +62,20 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function search(Request $request){
+        $id = $request->category_id;
+        $books = Book::orderBy('created_at','desc')->where('category_id' , $id)->get();
+        $book_act = Book::where('active',1)->get();
+        $book_noact = Book::where('active',0)->get();
+        $categories = Category::all();
+        return view('BookSrore.index',compact('books','book_act','book_noact','categories'));
+    }
+
     public function destroy($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect('/books');
     }
 }
