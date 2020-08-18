@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AlbumdetailRequest;
 use App\Repositories\AlbumDetailReponsitory;
 use Illuminate\Http\Request;
 use App\Models\Album;
@@ -37,7 +38,7 @@ class AlbumdetailController extends Controller
        return response()->json($albumDetail, 200);
     }
 
-    public function create(Request $request)
+    public function create(AlbumdetailRequest $request)
     {
         $atribute = $request->all();
         // dd($atribute);
@@ -85,7 +86,7 @@ class AlbumdetailController extends Controller
         return response()->json($albumDetail);
     }
 
-    public function update(Request $request, $id)
+    public function update(AlbumdetailRequest $request, $id)
     {
         $requests = $request->all();
         $albumDetail = $this->albumDetailReponsitory->updateDetailAlbum($requests,$id);

@@ -33,6 +33,13 @@
                 {{-- < action="{{ route('albumDetail.store') }}" method="POST"  enctype="multipart/form-data">
                     @csrf --}}
 
+                    <div class="erro_message">
+                        <table id="tbError">
+
+                        </table>
+
+                    </div>
+
                 <div class="modal-body">
                     <form id="frAlbumDetail" >
                         <input type="hidden" id="idAlbumDetail" name="idAlbumDetail" value="0">

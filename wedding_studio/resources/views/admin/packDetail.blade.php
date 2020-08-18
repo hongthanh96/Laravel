@@ -35,6 +35,14 @@
                  <span aria-hidden="true">&times;</span>
              </button>
          </div>
+
+         <div class="erro_message">
+            <table id="tbError">
+
+            </table>
+
+        </div>
+
          <div class="modal-body">
              <form id="frAddEditPackDetail">
                  <input type="hidden" id="idPackDetail" name="idPackDetail" value="0">

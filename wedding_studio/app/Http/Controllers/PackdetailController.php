@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PackdetailRequest;
 use App\Repositories\PackDetailRepository;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class PackdetailController extends Controller
 
     }
 
-    public function create(Request $request)
+    public function create(PackdetailRequest $request)
     {
 
         $requests = $request->all();
@@ -39,7 +40,7 @@ class PackdetailController extends Controller
         return response()->json($packList);
     }
 
-    public function update(Request $request, $id)
+    public function update(PackdetailRequest $request, $id)
     {
         $requests = $request->all();
         $packList = $this->packDetailReponsitory->updatePackDetail($requests,$id);

@@ -44,7 +44,11 @@ album.save = function(){
                     album.showAlbums();
                     alertify.success('Thêm album thành công!');
                 },
-                error:function(){
+                error:function(xhr){
+                    var errors = xhr.responseJSON.errors;
+                    $.each(errors,function(key,error){
+                        $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                    });
                     alertify.warning('Thêm album không thành công');
                 }
 
@@ -67,7 +71,11 @@ album.save = function(){
                 album.showAlbums();
                 alertify.success('Update album thành công!');
             },
-            error:function(){
+            error:function(xhr){
+                var errors = xhr.responseJSON.errors;
+                $.each(errors,function(key,error){
+                    $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                });
                 alertify.warning('Uppdate album không thành công');
             }
 
@@ -132,6 +140,7 @@ album.reset = function(){
     $('#nameAlbum').val("");
     $('#idAlbum').val('0');
     $('#addEditAlbum').find(".modal-title").text('Thêm loại album ảnh mới');
+    $('#tbError').html('');
 }
 
 album.edit = function(){

@@ -46,7 +46,7 @@
     <div class="row">
         @if (isset($services))
             @forelse ($services as $service)
-            <div class="col-4">
+            <div class="col-4 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('image/service_1.png') }}" class="rounded mx-auto d-block" style="width: 70px; height: 70px" alt="...">
                     <div class="card-body">
@@ -71,10 +71,10 @@
       <div class="row">
           @if (isset($albumHots))
               @foreach ($albumHots as $albumHot)
-                <div class="col-4 mt-3">
+                <div class="col-4 mt-3 d-flex justify-content-center">
                     <div class="card" style="width: 18rem; height: 22rem;">
                         <img src="upload/{{ $albumHot->image }}" class="card-img-top rounded mx-auto d-block" alt="..." style="height:250px;">
-                        <div class="card-body">
+                        <div class="card-body mb-2">
                             <h5 class="text-center">{{ $albumHot->title }}</h5>
                         </div>
                         <a href='{{ route("home.showAlbum", $albumHot->id) }}' class="text-center btn btn-primary">Xem chi tiết</a>
@@ -95,7 +95,7 @@
       <div class="row">
           @if (isset($packDetails))
               @foreach ($packDetails as $packDetail)
-              <div class="col-4 mt-3">
+              <div class="col-4 mt-3 d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
                     <h4 class="text-center text-danger">{{ $packDetail->name }}</h4>
                     <h4 class="text-center text-secondary">  {{ $packDetail->price }} VND</h4>

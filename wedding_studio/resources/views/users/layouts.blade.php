@@ -15,7 +15,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light"  style="background-color: #e3f2fd;">
-        <a class="navbar-brand" href="#"><img src="{{ asset('image/logo.png') }}" alt="Logo" style="width:100px;"></a>
+        <a class="navbar-brand" href="{{ route('homepage') }}"><img src="{{ asset('image/logo.png') }}" alt="Logo" style="width:100px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,7 @@
             <div class="col-8">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trang chủ</a>
+                        <a class="nav-link" href="{{ route('homepage') }}">Trang chủ</a>
                       </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Album</a>

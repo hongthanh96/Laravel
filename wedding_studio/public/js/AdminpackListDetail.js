@@ -62,7 +62,11 @@ packDetail.save = function(){
                     $('#addEditPackDetail').modal('hide');
                     alertify.success('Thêm gói thành công!');
                 },
-                error:function(){
+                error:function(xhr){
+                    var errors = xhr.responseJSON.errors;
+                    $.each(errors,function(key,error){
+                        $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                    });
                     alertify.error('Thêm gói không thành công!');
                 }
             });
@@ -88,7 +92,11 @@ packDetail.save = function(){
                     $('#addEditPackDetail').modal('hide');
                     alertify.success('Update dịch vụ thành công!');
                 },
-                error:function(){
+                error:function(xhr){
+                    var errors = xhr.responseJSON.errors;
+                    $.each(errors,function(key,error){
+                        $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                    });
                     alertify.error('Update dịch vụ không thành công!');
                 }
             });
@@ -175,6 +183,7 @@ packDetail.reset = function(){
     $('#service4').val("");
     $('#service4').val("");
     $('#service5').val("");
+    $('#tbError').html('');
 
 }
 

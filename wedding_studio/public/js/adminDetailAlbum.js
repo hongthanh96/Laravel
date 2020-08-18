@@ -64,8 +64,12 @@ albumDetail.save = function(){
                     albumDetail.showDetail();
                     alertify.success('Thêm album thành công!');
                 },
-                error:function(){
+                error:function(xhr){
                     // console.log('lỗi');
+                    var errors = xhr.responseJSON.errors;
+                        $.each(errors,function(key,error){
+                            $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                        });
                     alertify.error('Thêm album không thành công!');
                 }
             });
@@ -97,8 +101,12 @@ albumDetail.save = function(){
                     albumDetail.showDetail();
                     alertify.success('Update album thành công!');
                 },
-                error:function(){
+                error:function(xhr){
                     // console.log('lỗi');
+                    var errors = xhr.responseJSON.errors;
+                    $.each(errors,function(key,error){
+                        $('#tbError').append(`<tr><td class="text-danger">${error}</td></tr>`)
+                    });
                     alertify.error('Update album không thành công!');
                 }
             });
@@ -116,8 +124,9 @@ albumDetail.reset = function(){
     $('#name').val("");
     $('#description').val("");
     $('#isHot').val("");
-    $('#image').attr("src","");
-    $('#filename').attr("src","");
+    $('#image').val('');
+    $('#filename').val('');
+    $('#tbError').html('');
 
 }
 

@@ -29,6 +29,14 @@
                  <span aria-hidden="true">&times;</span>
              </button>
          </div>
+
+         <div class="erro_message">
+            <table id="tbError">
+
+            </table>
+
+        </div>
+
          <div class="modal-body">
              <form id="fromAddEditAlbum">
                  <input type="hidden" id="idAlbum" name="idAlbum" value="0">

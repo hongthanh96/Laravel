@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 $factory->define(Packdetail::class, function (Faker $faker) {
     return [
         'name' =>Str::random(5),
-        'price' => $faker->numberBetween($min = 1500, $max = 6000),
+        'price' => $faker->numberBetween($min = 2500000, $max = 100000000) ,
         'service1' =>Str::random(10),
         'service2' =>Str::random(10),
         'service3' =>Str::random(10),
